@@ -46,4 +46,17 @@ function NotePage({ id }) {
 ```
 ### Novos hooks 
 - ### useActionState
-  
+  - Permite atualizar o estado baseado no resultado de uma ação de formulário
+  - Fornece acesso ao estado pendente da ação, permitindo que o componente renderize conteúdo de carregamento enquanto a ação está em execução.
+```JSX
+const [state, formAction] = useActionState(fn, initialState, permalink?);
+```
+**Parâmetros:**
+  - fn: função a ser chamada ao submeter o formulário ou pressionar o botão
+  - initialState: valor inicial do estado
+  - permalink (opcional): uma string que contém a URL que o formulário modifica
+**Retornos:**
+Retorna um 'array' com dois valores:
+  - o estado atual (o estado inicial ou o valor retornado pela ação)
+  - uma nova ação passada como propriedade `action` para o formulário ou a propriedade `formAction` para um botão
+**Exemplo:**
