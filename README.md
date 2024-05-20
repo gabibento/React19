@@ -1,9 +1,35 @@
 # React19 - Novidades e atualizações!
 - O React 19, ainda em versão beta e lançado em 25 de abril de 2024, traz diversas novidades e melhorias que visam aprimorar a experiência de desenvolvimento e o desempenho das aplicações.
 
-## Atualizações
+- ## Índice
+1. [React Compiler](#react-compiler)
+3. [Server Components](#server-components)
+4. [Server Actions](#server-actions)
+5. [Meta Tags](#meta-tags)
+6. [Assets Loading](#assets-loading)
+7. [use API](#use-api)
+8. [Form Actions](#form-actions)
+9. [Novos Hooks](#novos-hooks)
+   - [useActionState](#useactionstate)
+   - [useFormStatus](#useformstatus)
+   - [useOptimistic](#useoptimistic)
+
+
+## Instalação da Versão Beta do React 19
+Para começar a experimentar as novas funcionalidades do React 19, você pode instalar a versão beta diretamente:
+
+```sh
+npm install react@beta react-dom@beta
+```
+Nota: O React 19 ainda está em versão beta. Portanto, é recomendado usá-lo apenas para fins de experimentação e desenvolvimento, não em ambientes de produção.
+
+### Preparação para o React 19 com o React 18.3
+A versão `@react18.3` foi publicada para facilitar a transição para o React 19. Essa versão inclui avisos sobre APIs deprecadas e outras mudanças necessárias para a atualização futura. É recomendável utilizar essa versão para preparar seu código para o React 19.
+
+## Principais atualizações
 ### React Compiler
- - Automatiza o processo de renderização, atualizando apenas as partes necessárias da interface. Além de eliminar a necessidade de memorização manual usando useCallback e useMemo.
+ - Automatiza o processo de renderização, atualizando apenas as partes necessárias da interface.
+ - Elimina a necessidade de memorização manual usando `useCallback` e `useMemo`.
  - Atualmente, o Compiler já está sendo utilizado pelo Instagram.
  - Não é necessária nenhuma alteração no código para utilizá-lo, pois ele já é integrado ao React 19.
 ### Server Components
@@ -15,7 +41,7 @@
    - reutilazação de lógica de renderização, tornando o código mais limpo e organizado.
 - Como utilizar:
         
-Criar um componente que retorne JSX e o marcar como assíncrono. Por exemplo:
+Crie um componente que retorne JSX e o marque como assíncrono. 
 ``` JSX
 import db from './db';
 
@@ -24,7 +50,7 @@ export default async function Note({ id }) {
   return <div>{note.text}</div>;
 }
 ```
-Para usar um Server Component em outro componente, pode-se importá-lo diretamente. Por exemplo:
+Para usar um Server Component em outro componente, pode-se importá-lo diretamente.
    
 ``` JSX
 import Note from './Note';
@@ -34,8 +60,8 @@ function NotePage({ id }) {
 }
 ```
 ### Server Actions
-- Permitem componentes do lado Cliente chamar funções assíncronas executadas no servidor
-- Ao definir uma ação do servidor com a diretiva "use server", é automaticamente criada uma referência para o Client Component
+- Permitem componentes do lado cliente chamar funções assíncronas executadas no servidor.
+- Ao definir uma ação do servidor com a diretiva "use server", é automaticamente criada uma referência para o Client Component.
 - Ao chamar a função no lado do cliente, é enviada uma requisição para o servidor para executar a função e retornar o resultado.
 
 ### Meta tags
@@ -64,9 +90,9 @@ function App() {
 export default App;
 ```
 ### Assets Loading
-- Carregamento de assets (estilos, fontes, scripts, etc) em segundo plano, fazendo com que a página seja exibida mais rapidamente.
+- Carregamento de assets (estilos, fontes, scripts, etc.) em segundo plano, fazendo com que a página seja exibida mais rapidamente.
 - Integração do Suspense com o ciclo de vida de carregamento de assets, permitindo determinar quando o conteúdo está pronto para ser exibido, garantindo que não apareça conteúdo incompleto e não formatado.
-- Novas APIs de carregamento de recursos, como preload e preinit, que permitem um melhor controle sobre o carregamento e inicialização de recursos
+- Novas APIs de carregamento de recursos, como preload e preinit, que permitem um melhor controle sobre o carregamento e inicialização de recursos.
 
 ### use
 - API que permite ler o valor de um recurso, como uma promessa ou contexto.
@@ -98,20 +124,21 @@ export default Theme;
 
 ### Form Actions
 - Com o React 19, a submissão de formulários não dependerá mais do evento onSubmit. É possível passar funções para lidar com a submissão do formulário utilizando a propriedade `action`.
-- Essa função pode ser assíncrona e pode ser executada no servidor, tornando a criação de formulários mais eficientes e organizados.
+Essa função pode ser assíncrona e executada no servidor, tornando a criação de formulários mais eficiente e organizada.
 
 ```jsx
 <form action={actionFunction}>
 ```
 ### Novos hooks 
-- ### useActionState
-  - Permite atualizar o estado baseado no resultado de uma ação de formulário
-  - Fornece acesso ao estado pendente da ação, permitindo que o componente renderize conteúdo de carregamento enquanto a ação está em execução.
-  - Como utilizar: 
+  #### useActionState
+ - Permite atualizar o estado baseado no resultado de uma ação de formulário.
+ - Fornece acesso ao estado pendente da ação, permitindo que o componente renderize conteúdo de carregamento enquanto a ação está em execução.
+     
+ **Como utilizar:** 
 ```JSX
 const [state, formAction] = useActionState(fn, initialState, permalink?);
 ```
-  - **Parâmetros:**
+   - **Parâmetros:**
   
      - fn: função a ser chamada ao submeter o formulário ou pressionar o botão
      - initialState: valor inicial do estado
@@ -179,7 +206,7 @@ export default Form
 Nesse exemplo, o useActionState é utilizado para gerenciar o estado da ação de envio de formulário e fornecer um feedback sobre o resultado.
 - ### useFormStatus
    - Fornece informações de status da submissão do formulário, podendo melhorar a experiência do usuário, simplificar o código e facilitar a depuração.
-   - Como utilizar:
+  **Como utilizar:**
 ```JSX
 const { pending, data, method, action } = useFormStatus();
 ```
@@ -212,7 +239,7 @@ Nesse exemplo, o useFormStatus está sendo utilizado para desabilitar o botão d
 - ### useOptimistic
   - Permite gerenciar atualizações otimistas, mostrando um estado diferente enquanto uma ação assíncrona está em andamento
   - Proporciona melhor experiência ao usuário com atualização imediata da interface
-  - Como utilizar:
+  **Como utilizar:**
    ```JSX
    const [optimisticState, addOptimistic] = useOptimistic(state,
     //updateFn
