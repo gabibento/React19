@@ -2,7 +2,7 @@
 - O React 19, ainda em versão beta e lançado em 25 de abril de 2024, traz diversas novidades e melhorias que visam aprimorar a experiência de desenvolvimento e o desempenho das aplicações.
 
 - ## Índice
-1. [Instalação](#instalacaodaversaobetadoreact19)
+1. [Instalação](#instalacao-da-versao-beta-do-react-19)
 2. [React Compiler](#react-compiler)
 3. [Server Components](#server-components)
 4. [Server Actions](#server-actions)
@@ -14,6 +14,7 @@
    - [useActionState](#useactionstate)
    - [useFormStatus](#useformstatus)
    - [useOptimistic](#useoptimistic)
+10. [Recursos Adicionais](#recursos-adicionais)
 
 
 ## Instalação da Versão Beta do React 19
@@ -346,8 +347,7 @@ export default MessageOptimistic
 Nesse exemplo, é utilizado o hook useOptimistic para gerenciar mensagens, adicionando uma mensagem temporária ao enviar o formulário.
 
 ## Recursos Adicionais
-- [Documentação Oficial do React](https://reactjs.org/docs/getting-started.html)
-- [Tutorial de React](https://reactjs.org/tutorial/tutorial.html)
-- [Blog do React](https://reactjs.org/blog/)
+- [Documentação Oficial do React](https://react.dev/)
+- [Blog do React](https://react.dev/blog)
 - [Repositório no GitHub](https://github.com/facebook/react)
 - [Video Matheus Battisti](https://www.youtube.com/watch?v=Y8tiDuvmKUg&list=WL&index=7&t=704s)
