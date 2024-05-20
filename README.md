@@ -66,6 +66,11 @@ function App() {
 
 export default App;
 ```
+### Assets Loading
+- Carregamento de assets (estilos, fontes, scripts, etc) em segundo plano, fazendo com que a página seja exibida mais rapidamente.
+- Integração do Suspense com o ciclo de vida de carregamento de assets, permitindo determinar quando o conteúdo está pronto para ser exibido, garantindo que não apareça conteúdo incompleto e não formatado.
+- Novas APIs de carregamento de recursos, como preload e preinit, que permitem um melhor controle sobre o carregamento e inicialização de recursos
+
 ### Form Actions
 - Com o React 19, a submissão de formulários não dependerá mais do evento onSubmit. É possível passar funções para lidar com a submissão do formulário utilizando a propriedade `action`.
 - Essa função pode ser assíncrona e pode ser executada no servidor, tornando a criação de formulários mais eficientes e organizados.
@@ -178,3 +183,5 @@ const SubmitButton = () => {
 export default SubmitButton
 ```
 Nesse exemplo, o useFormStatus está sendo utilizado para desabilitar o botão de envio caso esteja pendente e mostrar a mensagem correspondente no botão, fornecendo, assim, uma melhor experiência ao usuário.
+
+
