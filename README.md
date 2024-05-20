@@ -71,6 +71,33 @@ export default App;
 - Integração do Suspense com o ciclo de vida de carregamento de assets, permitindo determinar quando o conteúdo está pronto para ser exibido, garantindo que não apareça conteúdo incompleto e não formatado.
 - Novas APIs de carregamento de recursos, como preload e preinit, que permitem um melhor controle sobre o carregamento e inicialização de recursos
 
+### use
+- API que permite ler o valor de um recurso, como uma promessa ou contexto.
+- Pode ser chamado dentro de loops e estruturas condicionais.
+- Possui melhor concisão e desempenho
+**Exemplo:**
+```JSX
+import React, { use } from 'react';
+import { ThemeContext } from './ThemeContext';
+
+function Theme() {
+  
+  const {theme, toggleTheme} = use(ThemeContext);
+
+  return (
+    <div className={theme}>
+
+      <button onClick={toggleTheme} className={theme || "light"}>
+        Alterar tema para {theme === "light" ? "dark" : "light"}
+      </button>
+      
+    </div>
+  );
+}
+
+export default Theme;
+```
+
 ### Form Actions
 - Com o React 19, a submissão de formulários não dependerá mais do evento onSubmit. É possível passar funções para lidar com a submissão do formulário utilizando a propriedade `action`.
 - Essa função pode ser assíncrona e pode ser executada no servidor, tornando a criação de formulários mais eficientes e organizados.
