@@ -39,10 +39,10 @@ function NotePage({ id }) {
 - Ao chamar a função no lado do cliente, é enviada uma requisição para o servidor para executar a função e retornar o resultado.
 
 ### Meta tags
-- Suporte nativo para meta tags dentro dos componentes React. Facilitando o gerenciamento de títulos, descrições e outras informações de grande importância para o SEO e para a acessibilidade
+- Suporte nativo para meta tags dentro dos componentes React. Facilitando o gerenciamento de títulos, descrições e outras informações de grande importância para o SEO e para a acessibilidade.
+    
 **Exemplo:**
 ```JSX
-import MessageOptimistic from "./components/MessageOptimistic";
 
 function App() {
   return (
@@ -56,9 +56,6 @@ function App() {
       />
 
       <title>React 19</title>
-      
-     <MessageOptimistic></MessageOptimistic>
-        
       
     </div>
   );
@@ -74,7 +71,8 @@ export default App;
 ### use
 - API que permite ler o valor de um recurso, como uma promessa ou contexto.
 - Pode ser chamado dentro de loops e estruturas condicionais.
-- Possui melhor concisão e desempenho
+- Possui melhor concisão e desempenho.
+     
 **Exemplo:**
 ```JSX
 import React, { use } from 'react';
@@ -211,4 +209,111 @@ export default SubmitButton
 ```
 Nesse exemplo, o useFormStatus está sendo utilizado para desabilitar o botão de envio caso esteja pendente e mostrar a mensagem correspondente no botão, fornecendo, assim, uma melhor experiência ao usuário.
 
+- ### useOptimistic
+  - Permite gerenciar atualizações otimistas, mostrando um estado diferente enquanto uma ação assíncrona está em andamento
+  - Proporciona melhor experiência ao usuário com atualização imediata da interface
+  - Como utilizar:
+   ```JSX
+   const [optimisticState, addOptimistic] = useOptimistic(state,
+    //updateFn
+    (currentState, optimisticValue) => {
+
+    }
+   );
+   ```
+    - **Parâmetros:**
+       - state: valor a ser retornado inicialmente e quando não há ação pendente.
+       - updateFn: função assíncrona que executa a atualização e recebe dois argumentos:
+          - currentState: estado atual do componente no momento em que a função de atualização é chamada.
+          - optimisticValue: valor otimista, resultado esperado da ação.
+     - **Retornos:**
+        - optimisticState: estado atual do componente, do qual equivale ao valor do parâmetro 'state', caso não haja ação assíncrona em andamento, caso contrário equivale ao valor retornado pela função 'updateFn'
+        - addOptimistic: função que dispara atualizações otimistas, da qual recebe um argumento que representa o valor desejado após a conclusão da ação assíncrona.
+             
+    **Exemplo:**
+```JSX
+import React, { useOptimistic } from 'react'
+import SubmitButton from './SubmitButton';
+import { useState } from "react";
+import Form from "./Form";
+
+const Form = ({messages, sendMessage}) => {
+
+    const [optimisticMessages, addOptimisticMessages] = useOptimistic(messages, 
+        (state, newMessage) => [...state, {text: newMessage, sending: true}])
+
+    const handleAction = async(formData) => {
+
+        const name = formData.get("name");
+        const email = formData.get("email");
+
+      
+         addOptimisticMessages(name)
+
+        await sendMessage(formData)
+
+        if(name && email){
+            return{
+                success: true,
+                text: "Usuário criado"
+            }
+        }else{
+            return{
+                success: false,
+                text: "Erro ao criar usuário"
+            }
+        }
+
+    }
+
+  return (
+    <div>
+        <form action={handleAction}>
+            <label htmlFor="name">Nome: </label>
+            <input type="text" name='name'/>
+
+            <label htmlFor="email">Email: </label>
+            <input type="email" name='email'/>
+
+            <SubmitButton></SubmitButton>
+
+        </form>
+
+        {optimisticMessages && optimisticMessages.map((message, index) => (
+            <div key={index}>
+                {message.text} {message.sending && <small>Enviando...</small>}
+            </div>
+        ))}
+
+      
+    </div>
+  )
+}
+
+export default Form
+
+const MessageOptimistic = () => {
+    const [messages, setMessages] = useState([
+        {text: "", sending: false, key: 1}
+    ]);
+
+    async function deliverMessage(message){
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+
+        return message
+    }
+
+    async function sendMessage(formData){
+        const sentMessage = await deliverMessage(formData.get("message"))
+        setMessages((messages) => [...messages, {text: sentMessage, sending: false}])
+    }
+  return (
+      <Form messages={messages} sendMessage={sendMessage}></Form>
+    
+  )
+}
+
+export default MessageOptimistic
+```
+Nesse exemplo, é utilizado o hook useOptimistic para gerenciar mensagens, adicionando uma mensagem temporária ao enviar o formulário.
 
