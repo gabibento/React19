@@ -2,7 +2,7 @@
 - O React 19, ainda em versão beta e lançado em 25 de abril de 2024, traz diversas novidades e melhorias que visam aprimorar a experiência de desenvolvimento e o desempenho das aplicações.
 
 - ## Índice
-1. [Instalação](#instalacao-da-versao-beta-do-react-19)
+1. [Instalação](#instalação-da-versão-beta-do-react-19)
 2. [React Compiler](#react-compiler)
 3. [Server Components](#server-components)
 4. [Server Actions](#server-actions)
@@ -18,7 +18,7 @@
 
 
 ## Instalação da Versão Beta do React 19
-Para começar a experimentar as novas funcionalidades do React 19, você pode instalar a versão beta diretamente:
+Para começar a experimentar as novas funcionalidades do React 19, pode-se instalar a versão beta diretamente:
 
 ```sh
 npm install react@beta react-dom@beta
