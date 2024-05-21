@@ -206,8 +206,9 @@ const Form = () => {
 export default Form
 ```
 Nesse exemplo, o useActionState é utilizado para gerenciar o estado da ação de envio de formulário e fornecer um feedback sobre o resultado.
-- ### useFormStatus
+#### useFormStatus
    - Fornece informações de status da submissão do formulário, podendo melhorar a experiência do usuário, simplificar o código e facilitar a depuração.
+     
   **Como utilizar:**
 ```JSX
 const { pending, data, method, action } = useFormStatus();
