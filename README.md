@@ -8,7 +8,7 @@
 4. [Server Actions](#server-actions)
 5. [Meta Tags](#meta-tags)
 6. [Assets Loading](#assets-loading)
-7. [use API](#use-api)
+7. [use](#use)
 8. [Form Actions](#form-actions)
 9. [Novos Hooks](#novos-hooks)
    - [useActionState](#useactionstate)
@@ -142,9 +142,9 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 ```
    - **Parâmetros:**
   
-     - fn: função a ser chamada ao submeter o formulário ou pressionar o botão
-     - initialState: valor inicial do estado
-     - permalink (opcional): uma string que contém a URL que o formulário modifica
+     - `fn`: função a ser chamada ao submeter o formulário ou pressionar o botão
+     - `initialState`: valor inicial do estado
+     - `permalink` (opcional): uma string que contém a URL que o formulário modifica
          
  - **Retornos:**
   
@@ -217,10 +217,10 @@ const { pending, data, method, action } = useFormStatus();
      
       Retorna um objeto com as seguintes propriedades:
    
-        - pending: um boolean, do qual valor como 'true' significa que a submissão do formulário está pendente, e caso 'false' não está pendente
-        - data: um objeto que implementa a interface que contém os dados que o formulário está enviando
-        - method: um valor string 'get' ou 'post'. Representa o método HTTP que o formulário está enviando
-        - action: uma referência à função passada para a propriedade 'action' no formulário
+        - `pending`: um boolean, do qual valor como 'true' significa que a submissão do formulário está pendente, e caso 'false' não está pendente
+        - `data`: um objeto que implementa a interface que contém os dados que o formulário está enviando
+        - `method`: um valor string 'get' ou 'post'. Representa o método HTTP que o formulário está enviando
+        - `action`: uma referência à função passada para a propriedade 'action' no formulário
    **Exemplo:**
 ```JSX
 import {useFormStatus} from 'react-dom';
@@ -239,9 +239,10 @@ export default SubmitButton
 ```
 Nesse exemplo, o useFormStatus está sendo utilizado para desabilitar o botão de envio caso esteja pendente e mostrar a mensagem correspondente no botão, fornecendo, assim, uma melhor experiência ao usuário.
 
-- ### useOptimistic
-  - Permite gerenciar atualizações otimistas, mostrando um estado diferente enquanto uma ação assíncrona está em andamento
-  - Proporciona melhor experiência ao usuário com atualização imediata da interface
+#### useOptimistic
+- Permite gerenciar atualizações otimistas, mostrando um estado diferente enquanto uma ação assíncrona está em andamento.
+- Proporciona melhor experiência ao usuário com atualização imediata da interface.
+  
   **Como utilizar:**
    ```JSX
    const [optimisticState, addOptimistic] = useOptimistic(state,
@@ -251,16 +252,16 @@ Nesse exemplo, o useFormStatus está sendo utilizado para desabilitar o botão d
     }
    );
    ```
-    - **Parâmetros:**
-       - state: valor a ser retornado inicialmente e quando não há ação pendente.
-       - updateFn: função assíncrona que executa a atualização e recebe dois argumentos:
-          - currentState: estado atual do componente no momento em que a função de atualização é chamada.
-          - optimisticValue: valor otimista, resultado esperado da ação.
-     - **Retornos:**
-        - optimisticState: estado atual do componente, do qual equivale ao valor do parâmetro 'state', caso não haja ação assíncrona em andamento, caso contrário equivale ao valor retornado pela função 'updateFn'
-        - addOptimistic: função que dispara atualizações otimistas, da qual recebe um argumento que representa o valor desejado após a conclusão da ação assíncrona.
+- **Parâmetros:**
+  - `state`: valor a ser retornado inicialmente e quando não há ação pendente.
+  - `updateFn`: função assíncrona que executa a atualização e recebe dois argumentos:
+     - `currentState`: estado atual do componente no momento em que a função de atualização é chamada.
+     - `optimisticValue`: valor otimista, resultado esperado da ação.
+- **Retornos:**
+    - `optimisticState`: estado atual do componente, do qual equivale ao valor do parâmetro 'state', caso não haja ação assíncrona em andamento, caso contrário equivale ao valor retornado pela função 'updateFn'
+    - `addOptimistic`: função que dispara atualizações otimistas, da qual recebe um argumento que representa o valor desejado após a conclusão da ação assíncrona.
              
-    **Exemplo:**
+**Exemplo:**
 ```JSX
 import React, { useOptimistic } from 'react'
 import SubmitButton from './SubmitButton';
