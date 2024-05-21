@@ -94,7 +94,7 @@ export default App;
 ### Assets Loading
 - Carregamento de assets (estilos, fontes, scripts, etc.) em segundo plano, fazendo com que a página seja exibida mais rapidamente.
 - Integração do Suspense com o ciclo de vida de carregamento de assets, permitindo determinar quando o conteúdo está pronto para ser exibido, garantindo que não apareça conteúdo incompleto e não formatado.
-- Novas APIs de carregamento de recursos, como preload e preinit, que permitem um melhor controle sobre o carregamento e inicialização de recursos.
+- Novas APIs de carregamento de recursos, como `preload` e `preinit`, que permitem um melhor controle sobre o carregamento e inicialização de recursos.
 
 ### use
 - API que permite ler o valor de um recurso, como uma promessa ou contexto.
